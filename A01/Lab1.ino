@@ -160,14 +160,29 @@ void state11() {
   blink(6, 10000);
   delay(5000);
 }
-
-void blink(int pin, int time) {
-  for (int i = 0; i < (time / 90); i++) {
-    digitalWrite(pin, HIGH);
-    delay(30);
-    digitalWrite(pin, LOW);
-    delay(30);
-    digitalWrite(pin, HIGH);
-    delay(30);
-  }
+void yellowON(int redPin, int bluePin, int greenPin) {
+  analogWrite(redPin, 255);
+  analogWrite(greenPin, 240);
+  analogWrite(bluePin, 0);   
 }
+
+void yellowOff(int redPin, int bluePin, int greenPin) {
+  analogWrite(redPin, 0);
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 0);
+}
+void blink(int pin, int time) {
+  Serial.println(pin);
+  for (int i = 0; i < (time / 91); i++) {
+    delay(1);
+    yellowON(pin + 1, pin, pin - 1);
+    delay(30);
+    yellowOff(pin + 1, pin, pin - 1);
+    delay(30);
+    yellowON(pin + 1, pin, pin - 1);
+    delay(30);
+    yellowOff(pin + 1, pin, pin - 1);
+  }
+  digitalWrite(pin+1,HIGH);
+}
+
