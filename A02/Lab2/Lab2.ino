@@ -8,12 +8,17 @@ const int tempSensor = A2;
 const int myPins[] = {2, 3, 4};
 
 //Globals
-long int windMill = 0, currMill = 0 ;
-
-int btnState = 0;
-int prevBtnState = 0;
-int state;
+long int minMill , currMill , constMill, blinkMill;
+int MINUTE = 6000, blinkTime = 300;
+int Vout, lux;
+int btnState = 0, prevBtnState = 0;
+int state = 4;
 int prevWind = 512, currWind = 512;
+bool storm = false, blinkRed = true;
+double  tempC, tempF;
+int sumC = 0, sumLight = 0;
+int avgC = 0, avgF = 0, avgLight = 0;
+int counter = 0;
 
 //Array for variables
 String wind[] = {"Still", "Breezy", "Windy", "Gusty", "Stormy"};
@@ -28,7 +33,12 @@ const int allState = 4;
 
 //Function Prototypes
 void incrState();
+void bckGrdRefresh();
 String windSwitch(int n);
+void redBlink();
+String lightSwitch(int n);
+String tempSwitch();
+void avgValue();
 
 //SETUP
 void setup() {
@@ -46,73 +56,155 @@ void setup() {
 //LOOP
 void loop() {
   unsigned long currentMill = millis();
-
   boolean pushValue = digitalRead(pushBtn);;
 
-  for (int ledPin : myPins) {
-    digitalWrite(ledPin, HIGH);
-  }
+  avgValue();
   incrState();
-
-  //  unsigned long windCurrMill = millis();
-  if (millis() > windMill + 1000) {// use 60000 for minute using 1000 for testing
-    windMill = millis();
-    prevWind = currWind;
-//    Serial.println(prevWind);
+  bckGrdRefresh();
+  redBlink();
+  if(TEST == true){
+    MINUTES = 60000;  
   }
-
-  if (millis() > currMill + 950) {
+  if (millis() > currMill + (MINUTE)) {
     currMill = millis();
+
     if (state == tempState) {
       Serial.println("Temperature");
-      //double c = (((double)(analogRead(tempSensor)) * 0.0048828125)) * 100; // voltage
-     int reading = analogRead(tempSensor);  
-     // converting that reading to voltage, for 3.3v arduino use 3.3
-     double voltage = reading * 5.0;
-     voltage /= 1024.0;
-     
-     // now print out the temperature
-     double c = (voltage - 0.5) * 100 ;  //converting from 10 mv per degree wit 500 mV offset
-      Serial.print(c);                                               //to degrees ((voltage - 500mV) times 100)      Serial.print(c);
-      Serial.print(" C ");
-
-      Serial.print((int)round(1.8 * c + 32));
-      Serial.println(" F ");
+      Serial.println(String((int)round(tempC)) + " C " + String((int)round(tempF)) + " F \n");
     }
     else if (state == lightState) {
-      Serial.println("Light:");
-      Serial.println(analogRead(photocell));
+      Serial.println("Light:\t" + String(lightSwitch(lux)) + "\n");
     }
     else if (state == windState) {
-      Serial.println("Wind:");
-      Serial.println(windSwitch(analogRead(potent)));
+      Serial.println("Wind:\t" + windSwitch(currWind));
+      Serial.println("Potentiometer Redaing: " + String(currWind) + "\n");
     }
     else if (state == allState) {
       Serial.println("----------------------------------------------------------- ");
-      Serial.println("Count Lake Resort Date: ");
-      Serial.println("Location:");
+      Serial.println("Mount Lake Resort Date: 31 Feb 0000 Time: 25:00" );
+      Serial.println("Location: Peak Lake");
       Serial.println("----------------------------------------------------------- ");
-      Serial.println("Wind: \t");
-      Serial.println("Location: \t");
-      Serial.println("Outside Ambient Light: \t");;
+      Serial.println("Wind: \t\t" + windSwitch(currWind));
+      Serial.println("Outside Ambient Light: \t" + String(avgLight) + " Lux\t" + lightSwitch(avgLight));
+      Serial.println("Outside Air Temperature:\t" + String(avgC) + " C " + String(avgF) + " F " + "\t" + String(tempSwitch(avgC)) + "\n");
     }
   }
 }
+void avgValue() {
+  if (millis() > minMill + MINUTE/6) {
+    counter++;
+    sumC += ((analogRead(tempSensor) * 5.00) / 1024.00 - 0.5) * 100;
+    sumLight += constrain(analogRead(photocell), 0, 1023);
+//    Serial.println("COUNTER:"+String(counter));
+    
+    if (counter == 6) {
+      avgC = sumC / 10;
+      avgF = 1.8 * sumC + 32;
+      avgLight =  sumLight / 10;
+      sumC = 0;
+      sumLight = 0;
+      counter =0;
+    }
+  }
+}
+void bckGrdRefresh() {
+  if (millis() > minMill + MINUTE/6) {// use 60000 for minute using 1000 for testing
+    minMill = millis();
+    prevWind = currWind;
+    currWind = analogRead(potent);
+    lux = constrain(analogRead(photocell), 0, 1023);
 
+    tempC = ((analogRead(tempSensor) * 5.00) / 1024.00 - 0.5) * 100;
+    tempF = 1.8 * tempC + 32;
+  }
+  if (millis() > constMill + 10) {
+    constMill = millis();
+    currWind = analogRead(potent);
+    if (currWind == 1023 || currWind == 0)
+      storm = true;
+  }
+}
+void redBlink() {
+  if (millis() > blinkMill + blinkTime) {
+    blinkMill = millis();
+
+    if  (blinkRed == true) {
+      if (digitalRead(4) == LOW) {
+        digitalWrite(4, HIGH);
+      } else {
+        digitalWrite(4, LOW);
+      }
+    }
+  }
+}
+String tempSwitch(int n) {
+  String rtnValue;
+  if (n <= 0) {
+    rtnValue = temp[0];
+  }
+  if (n > 0 && n <= 15) {
+    rtnValue = temp[1];
+  }
+  if (n > 15 && n <= 25) {
+    rtnValue = temp[2];
+  }
+  if (n > 25) {
+    rtnValue = temp[3];
+
+  }
+  return rtnValue;
+}
+String lightSwitch(int n) {
+  String rtnValue;
+  if (n <= 256) {
+    rtnValue = brightness[0];
+  }
+  if (n > 256 && n <= 512) {
+    rtnValue = brightness[1];
+  }
+  if (n > 512 && n <= 768) {
+    rtnValue = brightness[2];
+  }
+  if (n > 768 && n <= 1024) {
+    rtnValue = brightness[3];
+
+  }
+  return rtnValue;
+}
 String windSwitch(int n) {
   String rtnValue;
-  if (n == (512 - 205) && prevWind == (512 - 205))
+
+  //  Still
+  if ((n == prevWind || n == (prevWind + 1) || n == (prevWind - 1) ) && prevWind >= 500 && prevWind <= 520 ) {
     rtnValue = wind[0];
-  if (n != (512 - 205) && prevWind == (512 - 205))
+    blinkRed = false;
+    digitalWrite(4, LOW);
+  }
+  //    Breezy
+  if ((n > 520 && prevWind < 500) ||  (n < 500 && prevWind > 520) ) {
     rtnValue = wind[1];
-  if (n == prevWind && n != 512)
+    blinkRed = true;
+  }
+  //Windy
+  if ((n == prevWind || n == prevWind + 1 || n == prevWind - 1) && (n < 500 || n > 520)) {
     rtnValue = wind[2];
-  if (n > 615 && n <= 820)
+    blinkRed = true;
+  }
+  //Gusty
+  if (((n < 500 && prevWind < 500) || (n > 520 && prevWind > 520)) && n != prevWind ) {
     rtnValue = wind[3];
-  if (n >= 820)
-    return wind[4];
-  currWind = n;
+    blinkRed = true;
+  }
+  //Stormy
+  if (storm) {
+    rtnValue = wind[4];
+    blinkRed = false;
+    digitalWrite(4, HIGH);
+  }
+
+  storm = false;
   return rtnValue;
+
 }
 
 void incrState() {
@@ -123,7 +215,6 @@ void incrState() {
       if (state > 4) {
         state = 1;
       }
-      //      Serial.println(state);
     }
     prevBtnState = btnState;
     delay(50);
