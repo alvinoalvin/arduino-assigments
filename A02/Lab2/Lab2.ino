@@ -8,6 +8,7 @@ const int tempSensor = A2;
 const int myPins[] = {2, 3, 4};
 
 //Globals
+const bool TEST = false;
 long int minMill , currMill , constMill, blinkMill;
 int MINUTE = 6000, blinkTime = 300;
 int Vout, lux;
@@ -62,8 +63,8 @@ void loop() {
   incrState();
   bckGrdRefresh();
   redBlink();
-  if(TEST == true){
-    MINUTES = 60000;  
+  if (TEST == true) {
+    MINUTE = 60000;
   }
   if (millis() > currMill + (MINUTE)) {
     currMill = millis();
@@ -77,7 +78,7 @@ void loop() {
     }
     else if (state == windState) {
       Serial.println("Wind:\t" + windSwitch(currWind));
-      Serial.println("Potentiometer Redaing: " + String(currWind) + "\n");
+      Serial.println("Potentiometer Reading: " + String(currWind) + "\n");
     }
     else if (state == allState) {
       Serial.println("----------------------------------------------------------- ");
@@ -91,37 +92,55 @@ void loop() {
   }
 }
 void avgValue() {
-  if (millis() > minMill + MINUTE/6) {
+  if (millis() > minMill + MINUTE / 6) {
     counter++;
     sumC += ((analogRead(tempSensor) * 5.00) / 1024.00 - 0.5) * 100;
     sumLight += constrain(analogRead(photocell), 0, 1023);
-//    Serial.println("COUNTER:"+String(counter));
-    
+    //    Serial.println("COUNTER:"+String(counter));
+
     if (counter == 6) {
-      avgC = sumC / 10;
-      avgF = 1.8 * sumC + 32;
-      avgLight =  sumLight / 10;
+      avgC = sumC / 6;
+      avgF = 1.8 * avgC + 32;
+      avgLight =  sumLight / 6;
       sumC = 0;
       sumLight = 0;
-      counter =0;
+      counter = 0;
     }
   }
 }
 void bckGrdRefresh() {
-  if (millis() > minMill + MINUTE/6) {// use 60000 for minute using 1000 for testing
-    minMill = millis();
+  if (millis() > constMill + 50u) {
+    constMill = millis();
     prevWind = currWind;
     currWind = analogRead(potent);
     lux = constrain(analogRead(photocell), 0, 1023);
 
     tempC = ((analogRead(tempSensor) * 5.00) / 1024.00 - 0.5) * 100;
     tempF = 1.8 * tempC + 32;
-  }
-  if (millis() > constMill + 10) {
-    constMill = millis();
-    currWind = analogRead(potent);
+
     if (currWind == 1023 || currWind == 0)
       storm = true;
+    if (windSwitch(currWind) == wind[0])
+      digitalWrite(4, LOW);
+    else if (windSwitch(currWind) == wind[1] || windSwitch(currWind) == wind[2] || windSwitch(currWind) == wind[3] ) {
+      digitalWrite(4, LOW);
+      redBlink();
+    }
+    else if (windSwitch(currWind) == wind[4])
+      digitalWrite(4, HIGH);
+
+    if (lightSwitch(lux) == brightness[3]) {
+      digitalWrite(3, HIGH);
+    } else {
+      digitalWrite(3, LOW);
+    }
+
+    if (tempC > 15) {
+      digitalWrite(2, HIGH);
+    } else {
+      digitalWrite(2, LOW);
+    }
+
   }
 }
 void redBlink() {
