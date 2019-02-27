@@ -1,0 +1,26 @@
+* {
+  text-align: center;
+  margin: 0;
+}
+.section {
+  width: 100vw;
+  height: 90vh;
+}
+.section h2 {
+  padding-top: 45vh;
+}
+#all {
+  background: no-repeat url("https://ak3.picdn.net/shutterstock/videos/18032173/thumb/1.jpg") 100%;
+  background-size: 100%;
+}
+#wind {
+  background-color: #5bcf5b;
+  background-image: url("http://pluspng.com/img-png/windy-png-hd-breeze-breezy-gust-of-wind-light-breeze-summer-weather-windy-512.png");
+  background-size: 400px;
+}
+#temp {
+  background-color: lightblue;
+}
+#light {
+  background-color: #d4a970;
+}
