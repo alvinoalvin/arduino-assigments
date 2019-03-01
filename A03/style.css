@@ -4,23 +4,29 @@
 }
 .section {
   width: 100vw;
-  height: 90vh;
+  height: 98vh;
 }
-.section h2 {
+.section h2 h1 {
   padding-top: 45vh;
+  font-size: 50px;
 }
 #all {
-  background: no-repeat url("https://ak3.picdn.net/shutterstock/videos/18032173/thumb/1.jpg") 100%;
+  background: no-repeat url("imgs/Cover.jpg");
   background-size: 100%;
 }
 #wind {
-  background-color: #5bcf5b;
   background-image: url("http://pluspng.com/img-png/windy-png-hd-breeze-breezy-gust-of-wind-light-breeze-summer-weather-windy-512.png");
   background-size: 400px;
+  background-color: #5bcf5b;
 }
 #temp {
+  background: url("https://www.pngrepo.com/download/150268/thermometer.png");
+  background-size: 200px;
+  background-repeat: space 200px 200px;
   background-color: lightblue;
 }
 #light {
+  background: url("https://png.icons8.com/color/160/pixar-lamp-2.png") space 50px 50px;
+  background-size: 250px;
   background-color: #d4a970;
 }
