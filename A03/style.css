@@ -2,31 +2,71 @@
   text-align: center;
   margin: 0;
 }
-.section {
-  width: 100vw;
-  height: 98vh;
+body {
+  background-color: #cfe2f5;
+  font-family: 'Montserrat', sans-serif;
 }
-.section h2 h1 {
-  padding-top: 45vh;
+.section {
+  width: 85vw;
+  height: 100vh;
+  margin-left: 7.5vw;
+}
+.section h2 {
+  padding-top: 50vh;
   font-size: 50px;
+  font-weight: 200;
+}
+.menu {
+  position: fixed;
+  right: 6.5vw;
+  border: solid whitesmoke 0.5px;
+  opacity: 0.8;
+}
+.menu a {
+  padding: 10px 15px;
+  float: right;
+  text-decoration: none;
+  font-size: 18px;
+  background-color: white;
+}
+.menu a:hover {
+  background-color: whitesmoke;
 }
 #all {
-  background: no-repeat url("imgs/Cover.jpg");
-  background-size: 100%;
+  background: no-repeat url("https://firebasestorage.googleapis.com/v0/b/fir-images-851b6.appspot.com/o/Cover.jpg?alt=media&token=ad80b6eb-5fcd-4256-9067-3b4895db82c2");
+  height: 40vh;
+}
+#all h1 {
+  padding-top: 10%;
+  font-size: 50px;
 }
 #wind {
-  background-image: url("http://pluspng.com/img-png/windy-png-hd-breeze-breezy-gust-of-wind-light-breeze-summer-weather-windy-512.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/fir-images-851b6.appspot.com/o/windy-png-hd-breeze-breezy-gust-of-wind-light-breeze-summer-weather-windy-512.png?alt=media&token=f2c1da8e-49b1-4564-8c0e-2e53a14b5e5f");
   background-size: 400px;
-  background-color: #5bcf5b;
+  background-color: #a4dda4;
 }
 #temp {
-  background: url("https://www.pngrepo.com/download/150268/thermometer.png");
+  background: url("https://firebasestorage.googleapis.com/v0/b/fir-images-851b6.appspot.com/o/thermometer-pngrepo-com.png?alt=media&token=de18912c-6c3f-442c-97e4-cd52cc8b2be2");
   background-size: 200px;
   background-repeat: space 200px 200px;
-  background-color: lightblue;
+  background-color: #3b484d;
+  color: #f8f2ff;
 }
 #light {
-  background: url("https://png.icons8.com/color/160/pixar-lamp-2.png") space 50px 50px;
+  background: url("https://firebasestorage.googleapis.com/v0/b/fir-images-851b6.appspot.com/o/pixar-lamp-2.png?alt=media&token=3ca2d01a-4a35-4057-b221-76bf70443816") space 50px 50px;
   background-size: 250px;
-  background-color: #d4a970;
+  background-color: #bbd3f0;
+  color: white;
+}
+@media only screen and (max-width: 1600px) {
+  #all {
+    background-size: auto;
+  }
+  .section {
+    width: 100%;
+    margin: 0;
+  }
+  .menu {
+    right: 0;
+  }
 }
