@@ -113,6 +113,7 @@ void loop() {
             client.println("    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">");
             client.println("    <meta http-equiv=\"refresh\" content=\"10\">");
             client.println("    <link href=\"https://fonts.googleapis.com/css?family=Eagle+Lake|Montserrat\" rel=\"stylesheet\">");
+            client.println("    <link rel=\"icon\" href=\"http://www.iconarchive.com/download/i14752/icondigest/gone-fishin/Lake-trout.ico\" type=\"image/x-icon\">");
             client.println("<style>");
             client.println("    * {");
             client.println("        text-align: center;");
@@ -258,7 +259,7 @@ void loop() {
             client.println("        <h1>Mount Lake Resort</h1>");
             client.println("        Wind-speed:" + windSwitch(currWind));
             client.println("        <br>");
-            client.println("        Temperature: <meter value=\""+ String((int)round(tempC)) + "\" min=\"0\" max=\"50\"></meter>");
+            client.println("        Temperature: <meter value=\"" + String((int)round(tempC)) + "\" min=\"0\" max=\"50\"></meter>");
             client.println("        <br>");
             client.println("        light:" + String(lightSwitch(lux)));
             client.println("    </header>");
