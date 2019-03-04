@@ -44,7 +44,7 @@ void avgValue();
 #include <SPI.h>
 #include <Ethernet.h>
 byte mac[] = {0x90, 0xA2, 0xDA, 0x0F, 0x6F, 0x1F};
-EthernetServer server(80);
+EthernetServer server(800);
 
 void setup() {
   // put your setup code here, to run once:
@@ -111,7 +111,7 @@ void loop() {
             client.println("    <meta charset=\"UTF-8\">");
             client.println("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
             client.println("    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">");
-            client.println("    <meta http-equiv=\"refresh\" content=\"5\">");
+            client.println("    <meta http-equiv=\"refresh\" content=\"10\">");
             client.println("    <link href=\"https://fonts.googleapis.com/css?family=Eagle+Lake|Montserrat\" rel=\"stylesheet\">");
             client.println("<style>");
             client.println("    * {");
