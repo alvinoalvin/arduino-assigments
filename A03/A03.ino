@@ -258,7 +258,7 @@ void loop() {
             client.println("        <h1>Mount Lake Resort</h1>");
             client.println("        Wind-speed:" + windSwitch(currWind));
             client.println("        <br>");
-            client.println("        Temperature: " + String((int)round(tempC)) + " C " + " &#176;" + String((int)round(tempF)) + " F" + " &#176;");
+            client.println("        Temperature: <meter value=\""+ String((int)round(tempC)) + "\" min=\"0\" max=\"50\"></meter>");
             client.println("        <br>");
             client.println("        light:" + String(lightSwitch(lux)));
             client.println("    </header>");
