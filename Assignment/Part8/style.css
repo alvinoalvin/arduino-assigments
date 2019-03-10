@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(250, 250, 235);
+}
+table,
+tr,
+td {
+    border: black solid 1px;
+    margin: 10px 0;
+    background-color: rgb(194, 239, 255);
+}
+
+.section1 td {
+    padding: 10px;
+}
+.section2 td{
+    border-spacing:10px;
+}
