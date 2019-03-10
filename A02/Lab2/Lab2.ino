@@ -57,7 +57,7 @@ void setup() {
 //LOOP
 void loop() {
   unsigned long currentMill = millis();
-  boolean pushValue = digitalRead(pushBtn);;
+  boolean pushValue = digitalRead(pushBtn);
 
   avgValue();
   incrState();
@@ -109,7 +109,7 @@ void avgValue() {
   }
 }
 void bckGrdRefresh() {
-  if (millis() > constMill + 50u) {
+  if (millis() > constMill + 50) {
     constMill = millis();
     prevWind = currWind;
     currWind = analogRead(potent);
