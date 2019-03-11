@@ -43,9 +43,8 @@ body #header nav a:hover {
   background-color: #dfdfdf;
 }
 body #bio {
-  padding-top: 5%;
-  width: 80%;
-  margin-left: 10%;
+  width: 65%;
+  padding: 3% 17.5%;
 }
 body #bio img {
   height: 50%;
@@ -70,7 +69,7 @@ body #bio p {
   font-size: 20px;
 }
 body #projects {
-  padding-top: 2%;
+  padding: 2%;
   background-image: linear-gradient(to top right, black, purple);
   text-emphasis: wrap;
 }
