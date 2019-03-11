@@ -1,48 +1,98 @@
+/* Variables */
+/* Mixins */
+/* content */
 * {
+  margin: 0;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+* h1 {
+  font-size: 40px;
   font-family: 'Poiret One', cursive;
-  font-size: 70px;
 }
 * a {
-  color: white;
   font-weight: bolder;
   text-decoration: none;
 }
 body {
-  margin: 0;
+  color: black;
 }
 body #header {
   background: #eee;
+  display: flex;
+  flex-flow: column;
+  position: sticky;
+  width: 100vw;
+  height: 10vh;
+  top: 0;
 }
-body .bio img {
+body #header h1 a {
+  font-size: 55px;
+  color: black;
+  font-family: 'Poiret One', cursive;
+}
+body #header nav a {
+  display: inline-block;
+  padding-top: 10px;
+  height: 25px;
+  width: 30%;
+  color: black;
+  vertical-align: text-center;
+}
+body #header nav a:hover {
+  background-color: #dfdfdf;
+}
+body #bio {
+  padding-top: 5%;
+  width: 80%;
+  margin-left: 10%;
+}
+body #bio img {
   height: 50%;
   width: 30%;
 }
-body .projects {
-  background-image: linear-gradient(to top right, black, purple);
+body #bio .Languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  width: 50%;
+  padding-left: 25%;
 }
-body .projects h1 {
-  font-size: 70px;
+body #bio .Languages a {
   color: white;
+  border: solid white;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
-body .projects #navGrid {
+body #bio p {
+  margin: auto;
+  font-size: 20px;
+}
+body #projects {
+  padding-top: 2%;
+  background-image: linear-gradient(to top right, black, purple);
+  text-emphasis: wrap;
+}
+body #projects #navGrid {
+  width: 90%;
+  margin-left: 5%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  height: auto;
-  width: auto;
-  padding: 0 10% 10% 10%;
 }
-body .projects #navGrid a {
+body #projects #navGrid a {
+  font-size: 5vw;
   background-color: rgba(250, 250, 250, 0.4);
-  border: 1px transparent solid;
-  width: 100%;
-  height: 20vw;
-  text-justify: auto;
+  width: 3.5em;
+  height: 3.5em;
+  justify-self: center;
   line-height: 20vw;
   overflow: hidden;
+  color: white;
 }
-body .projects #navGrid a:hover {
+body #projects #navGrid a:hover {
   -webkit-filter: brightness(50%);
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -52,57 +102,60 @@ body .projects #navGrid a:hover {
   color: white;
   background: rgba(255, 255, 255, 0.5);
 }
-body .projects #navGrid #proj1 {
-  color: black;
-  background: url("imgs/resume.JPG");
+body #projects #navGrid #proj3 {
+  background: url("imgs/github.JPG");
   background-size: cover;
-}
-body .projects #navGrid #proj2 {
-  background-image: url("imgs/linkedIn.JPG");
-  background-size: cover;
-}
-body .projects #navGrid #proj3 {
+  background-repeat: round;
   color: black;
-  background-image: url("imgs/github.JPG");
+}
+body #projects #navGrid #proj4 {
+  background: url("imgs/clock.JPG");
   background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj4 {
-  background-image: url("imgs/clock.JPG");
+body #projects #navGrid #proj5 {
+  background: url("imgs/gradius.JPG");
   background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj5 {
-  background-image: url("imgs/gradius.JPG");
+body #projects #navGrid #proj7 {
+  color: black;
+  background: url("imgs/pokedex.JPG");
   background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj6 {
-  background-image: url("imgs/rps.JPG");
+body #projects #navGrid #proj8 {
+  background: url("imgs/atropos.JPG");
   background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj7 {
+body #projects #navGrid #proj9 {
   color: black;
-  background-image: url("imgs/pokedex.JPG");
+  background: url("imgs/kings.JPG");
+  background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj8 {
-  background-image: url("imgs/atropos.JPG");
-}
-body .projects #navGrid #proj9 {
+body #projects #navGrid #proj10 {
   color: black;
-  background-image: url("imgs/kings.JPG");
+  background: url("imgs/chatroom.JPG");
+  background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj10 {
+body #projects #navGrid #proj11 {
+  background: url("imgs/crest1-modified.png");
+  background-size: cover;
+  background-repeat: round;
+}
+body #projects #navGrid #proj12 {
   color: black;
-  background-image: url("imgs/chatroom.JPG");
+  background: url("imgs/scouts.jpg");
+  background-size: cover;
+  background-repeat: round;
 }
-body .projects #navGrid #proj11 {
-  background-image: url("imgs/crest1-modified.png");
-  background-size: 100%;
-  background-color: #fff;
+body #contact {
+  height: 10vh;
 }
-body .projects #navGrid #proj12 {
-  color: black;
-  background-image: url("imgs/Scouts.JPG");
-  background-size: 100%;
-}
-body #footer {
-  background: #eee;
+body #contact img:hover {
+  box-shadow: 1px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 38px;
 }
