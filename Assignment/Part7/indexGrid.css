@@ -23,8 +23,9 @@ body #header {
   flex-flow: column;
   position: sticky;
   width: 100vw;
-  height: 10vh;
+  height: 100px;
   top: 0;
+  z-index: 1;
 }
 body #header h1 a {
   font-size: 55px;
@@ -33,7 +34,6 @@ body #header h1 a {
 }
 body #header nav a {
   display: inline-block;
-  padding-top: 10px;
   height: 25px;
   width: 30%;
   color: black;
@@ -71,6 +71,10 @@ body #projects {
   padding: 2%;
   background-image: linear-gradient(to top right, black, purple);
   text-emphasis: wrap;
+}
+body #projects h1 {
+  color: white;
+  padding-bottom: 15px;
 }
 body #projects #navGrid {
   width: 90%;
