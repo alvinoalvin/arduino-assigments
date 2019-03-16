@@ -6,30 +6,30 @@
 SoftwareSerial mySerial(3, 2); // pin 2 = TX, pin 3 = RX (unused)
 
 void setup() {
-  mySerial.begin
-  (9600); // set up serial port for 9600 baud
-  delay(500); // wait for display to boot up
-  pinMode(
-  mySerial.write(254); // cursor to beginning of first line
-  mySerial.write(128);
-  mySerial.write("RPM:            "); // clear display + legends
-  mySerial.write("TEMP:           ");
+  mySerial.begin(9600); // set up serial port for 9600 baud
+  pinMode(A5, INPUT);
 }
 
-int temp, rpm;
-char tempstring[10], rpmstring[10]; // create string array
+int temp;
+char tempstring[10]; // create string array
+double getVoltage();
 
 void loop() {
-  temp = (1000); // make some fake data
-  rpm = random(10000);
-  sprintf(tempstring, "%4d", rpm); // create strings from the numbers
-  sprintf(rpmstring, "%4d", temp); // right  -justify to 4 spaces
-  mySerial.write(254); // cursor to 7th position on first line
-  mySerial.write(134);
-  mySerial.write(rpmstring
-                ); // write out the RPM value
-  mySerial.write(254); // cursor to 7th position on second line
-  mySerial.write(198);
-  mySerial.write(tempstring); // write out the TEMP value
-  delay(1000); // short delay
+  //  temp = (getVoltage() - 0.5) * 100.0;//Temperature reading
+  temp = getC();
+  mySerial.write(254);
+  mySerial.write(128);
+  sprintf(tempstring, "%4d", temp); // create strings from the numbers
+
+  mySerial.write("Temp: ");
+  mySerial.write(tempstring);
+  mySerial.write((char)223);
+  mySerial.write("C");
+  mySerial.println("            ");
+  delay(1000);
+}
+//
+double getC() {
+  double voltage = analogRead(A5) * 0.004882814;
+  return (voltage - 0.5) * 100.0; //Temperature reading
 }
