@@ -1,18 +1,20 @@
-int pinG = 2;
-int pinY = 3;
-int pinR = 4;
+int pinG = 12;
+int pinY = 11;
+int pinR = 10;
+char val;
 
 void setup()
 {
   // put your setup code here, to run once:
-  pinMode(pinG, HIGH);
-  pinMode(pinY, HIGH);
-  pinMode(pinR, HIGH);
+  pinMode(pinG, OUTPUT);
+  pinMode(pinY, OUTPUT);
+  pinMode(pinR, OUTPUT);
   Serial.begin(9600);
 }
 
 void loop()
 {
+  digitalWrite(pinR, HIGH);
   // put your main code here, to run repeatedly:
   if (Serial.available())
   {
