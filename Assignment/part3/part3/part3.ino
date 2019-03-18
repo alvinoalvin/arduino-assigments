@@ -45,61 +45,60 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
-    digitalWrite(D1, HIGH);
+  digitalWrite(D1, HIGH);
+  digitalWrite(D2, LOW);
+  digitalWrite(D3, LOW);
+  digitalWrite(D4, LOW);
+  //0
+  digitalWrite(pinA, LOW);
+  digitalWrite(pinB, HIGH);
+  digitalWrite(pinC, LOW);
+  digitalWrite(pinD, LOW);
+  digitalWrite(pinE, HIGH);
+  digitalWrite(pinF, LOW);
+  digitalWrite(pinG, LOW);
+  delay(1);
+    digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
+    digitalWrite(D3, LOW);
+    digitalWrite(D4, LOW);
+    //1
+    digitalWrite(pinA, LOW);
+    digitalWrite(pinB, LOW);
+    digitalWrite(pinC, LOW);
+    digitalWrite(pinD, HIGH);
+    digitalWrite(pinE, LOW);
+    digitalWrite(pinF, LOW);
+    digitalWrite(pinG, LOW);
+    delay(1);               // wait for a second
+  
+    digitalWrite(D1, LOW);
+    digitalWrite(D2, LOW);
     digitalWrite(D3, HIGH);
-    digitalWrite(D4, HIGH);
-    //0
+    digitalWrite(D4, LOW);
+    //2
     digitalWrite(pinA, HIGH);
     digitalWrite(pinB, HIGH);
-    digitalWrite(pinC, HIGH);
+    digitalWrite(pinC, LOW);
     digitalWrite(pinD, HIGH);
-    digitalWrite(pinE, HIGH);
+    digitalWrite(pinE, LOW);
     digitalWrite(pinF, HIGH);
+    digitalWrite(pinG, LOW);
+    delay(1);               // wait for a second
+  
+    digitalWrite(D1, LOW);
+    digitalWrite(D2, LOW);
+    digitalWrite(D3, LOW);
+    digitalWrite(D4, HIGH);
+    //3
+    digitalWrite(pinA, LOW);
+    digitalWrite(pinB, HIGH);
+    digitalWrite(pinC, LOW);
+    digitalWrite(pinD, HIGH);
+    digitalWrite(pinE, LOW);
+    digitalWrite(pinF, LOW);
     digitalWrite(pinG, HIGH);
     delay(1);               // wait for a second
-  //
-  //  digitalWrite(D1, LOW);
-  //  digitalWrite(D2, HIGH);
-  //  digitalWrite(D3, LOW);
-  //  digitalWrite(D4, LOW);
-  //  //1
-  //  digitalWrite(pinA, LOW);
-  //  digitalWrite(pinB, LOW);
-  //  digitalWrite(pinC, LOW);
-  //  digitalWrite(pinD, HIGH);
-  //  digitalWrite(pinE, LOW);
-  //  digitalWrite(pinF, LOW);
-  //  digitalWrite(pinG, LOW);
-  //  delay(1);               // wait for a second
-  //
-  //  digitalWrite(D1, LOW);
-  //  digitalWrite(D2, LOW);
-  //  digitalWrite(D3, HIGH);
-  //  digitalWrite(D4, LOW);
-  //  //2
-  //  digitalWrite(pinA, HIGH);
-  //  digitalWrite(pinB, HIGH);
-  //  digitalWrite(pinC, LOW);
-  //  digitalWrite(pinD, HIGH);
-  //  digitalWrite(pinE, LOW);
-  //  digitalWrite(pinF, HIGH);
-  //  digitalWrite(pinG, LOW);
-  //  delay(1);               // wait for a second
-  //
-  //  digitalWrite(D1, LOW);
-  //  digitalWrite(D2, LOW);
-  //  digitalWrite(D3, LOW);
-  //  digitalWrite(D4, HIGH);
-  //  //3
-  //  digitalWrite(pinA, LOW);
-  //  digitalWrite(pinB, HIGH);
-  //  digitalWrite(pinC, LOW);
-  //  digitalWrite(pinD, HIGH);
-  //  digitalWrite(pinE, LOW);
-  //  digitalWrite(pinF, LOW);
-  //  digitalWrite(pinG, HIGH);
-  //  delay(1);               // wait for a second
   /*
     //4
     digitalWrite(pinA, HIGH);
