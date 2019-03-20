@@ -3,7 +3,6 @@
 /* content */
 * {
   margin: 0;
-  text-align: center;
   font-family: 'Montserrat', sans-serif;
 }
 * h1 {
@@ -16,16 +15,20 @@
 }
 body {
   color: black;
+  text-align: center;
 }
 body #header {
   background: #eee;
   display: flex;
   flex-flow: column;
   position: sticky;
-  width: 100vw;
   height: 100px;
+  width: 100%;
   top: 0;
   z-index: 1;
+}
+body #header h1 {
+  padding-bottom: 10px;
 }
 body #header h1 a {
   font-size: 55px;
@@ -77,9 +80,9 @@ body #projects h1 {
   padding-bottom: 15px;
 }
 body #projects #navGrid {
+  height: 100%;
   width: 90%;
   margin-left: 5%;
-  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
@@ -87,8 +90,8 @@ body #projects #navGrid {
 body #projects #navGrid a {
   font-size: 5vw;
   background-color: rgba(250, 250, 250, 0.4);
-  width: 3.5em;
   height: 3.5em;
+  width: 3.5em;
   justify-self: center;
   line-height: 20vw;
   overflow: hidden;
@@ -153,6 +156,47 @@ body #projects #navGrid #proj12 {
   background: url("imgs/scouts.jpg");
   background-size: cover;
   background-repeat: round;
+}
+body .education {
+  background-color: #8791ad;
+  height: 100%;
+  width: 100%;
+  padding: 5% 0;
+}
+body .education .school {
+  background-color: #fff;
+  padding: 10%;
+  width: 60vw;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 8fr 3fr;
+  grid-template-areas: ". edu locDate" ". text text" ". text text" ". text text";
+  margin: 5vh;
+  margin-left: 10%;
+}
+body .education .school .logo {
+  grid-area: logo;
+  display: none;
+}
+body .education .school .eduTitle {
+  grid-area: edu;
+}
+body .education .school .dateLoc {
+  grid-area: locDate;
+}
+body .education .school p {
+  grid-area: text;
+  margin-top: 20px;
+}
+@media only screen and (min-width: 900px) {
+  body .education .school {
+    padding: 5%;
+    margin-left: 15%;
+    grid-template-areas: "logo edu locDate" ". text text" ". text text" ". text text";
+  }
+  body .education .school .logo {
+    display: inline;
+  }
 }
 body #contact {
   height: 10vh;

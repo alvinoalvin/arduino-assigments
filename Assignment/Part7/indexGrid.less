@@ -22,11 +22,14 @@
     background-repeat: round;
 }
 
+.widthHeight(@w, @h){
+    height:@h;
+    width:@w;
+}
 /* content */
 
 * {
     margin: 0;
-    text-align: center;
     font-family: 'Montserrat', sans-serif;
     h1 {
         font-size: 40px;
@@ -40,13 +43,13 @@
 
 body {
     color: black;
+    text-align: center;
     #header {
         background: #eee;
         display: flex;
         flex-flow: column;
         position: sticky;
-        width: 100vw;
-        height: 100px;
+        .widthHeight(100%,100px);
         top: 0;
         z-index:1;
         h1 {
@@ -55,11 +58,11 @@ body {
                 color: black;
                 font-family: 'Poiret One', cursive;
             }
+            padding-bottom: 10px;
         }
         nav a {
             display: inline-block;
-            height: 25px;
-            width: 30%;
+            .widthHeight(30%,25px);
             color: black;
             vertical-align: text-center;
             &:hover {
@@ -101,9 +104,8 @@ body {
         background-image: linear-gradient(to top right, black, purple);
         text-emphasis: wrap;
         #navGrid {
-            width: 90%;
+            .widthHeight(90%,100%);
             margin-left: 5%;
-            height: 100%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: 10px;
@@ -111,8 +113,7 @@ body {
                 font-size: 5vw;
                 background-color: rgba(250, 250, 250, 0.4);
                 .hovDiv;
-                width: 3.5em;
-                height: 3.5em;
+                .widthHeight(3.5em,3.5em);
                 justify-self: center;
                 line-height: 20vw;
                 overflow: hidden;
@@ -151,6 +152,54 @@ body {
                 .bg("imgs/scouts.jpg");
             }
         }
+    }
+    .education{
+        background-color: rgb(135, 145, 173);
+        .widthHeight(100%,100%);
+        padding:5% 0;
+        
+        .school{
+            background-color: #fff;
+            padding:10%;
+            width:60vw;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 8fr 3fr;
+            grid-template-areas: 
+                ". edu locDate"
+                ". text text"
+                ". text text"
+                ". text text";
+                .logo{
+                    grid-area:logo;
+                    display:none;
+                }
+                .eduTitle{
+                    grid-area:edu;
+                }
+                .dateLoc{
+                    grid-area:locDate;
+                }
+                p{
+                    grid-area:text;
+                    margin-top:20px;
+                }
+            margin:5vh;
+            margin-left:10%;
+            @media only screen and (min-width:900px) {
+                padding:5%;
+                margin-left:15%;
+                grid-template-areas: 
+                "logo edu locDate"
+                ". text text"
+                ". text text"
+                ". text text";
+                .logo{
+                    display:inline;
+                }
+            }
+        }
+        
     }
     #contact {
         height: 10vh;
